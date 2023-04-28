@@ -1,7 +1,7 @@
 apiVersion: v2
 appVersion: 1.0.0
 name: app
-description: A General Helm chart for Kubernetes
+description: A General Helm chart for K8s applications
 keywords:
   - app
 kubeVersion: '>=1.22.0-0'
