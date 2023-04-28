@@ -1,6 +1,14 @@
 apiVersion: v2
+appVersion: 1.0.0
 name: app
-description: A Helm chart for Kubernetes
+description: A General Helm chart for Kubernetes
+keywords:
+  - app
+kubeVersion: '>=1.22.0-0'
+maintainers:
+- name: vlidtara
+  url: https://github.com/vlidtara/chart-demo
+sources:
+- https://github.com/vlidtara/chart-demo
 type: application
 version: 1.0.0
-appVersion: "1.0.0"

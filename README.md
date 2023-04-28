@@ -2,7 +2,21 @@
 
 ![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
-A Helm chart for Kubernetes
+A General Helm chart for Kubernetes
+
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| vlidtara |  | <https://github.com/vlidtara/chart-demo> |
+
+## Source Code
+
+* <https://github.com/vlidtara/chart-demo>
+
+## Requirements
+
+Kubernetes: `>=1.22.0-0`
 
 ## Values
 
