@@ -4,11 +4,12 @@ name: app
 description: A General Helm chart for K8s applications
 keywords:
   - app
-kubeVersion: '>=1.22.0-0'
+kubeVersion: ">=1.22.0-0"
 maintainers:
-- name: vlidtara
-  url: https://github.com/vlidtara/chart-demo
+  - name: vlidtara
+    email: vlad@glaps.fun
+    url: https://github.com/vlidtara/chart-demo
 sources:
-- https://github.com/vlidtara/chart-demo
+  - https://github.com/vlidtara/chart-demo
 type: application
 version: 1.0.0
