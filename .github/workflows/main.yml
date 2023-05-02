@@ -7,15 +7,12 @@ jobs:
   build-chart:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
       - name: Push Helm chart to OCI compatible registry (Github)
         uses: bsord/helm-push@v4.1.0
         with:
           useOCIRegistry: true
           registry-url: oci://ghcr.io/${{ github.repository }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          access-token: ${{ secrets.GITHUB_TOKEN }}
           force: true
           chart-folder: ./
