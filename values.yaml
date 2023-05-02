@@ -2,51 +2,55 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-# -- Count of replicas
+# -- Number of replicas for the deployment
 replicaCount: 1
 
-# -- Image section
+# -- Configuration for the container image
 image:
-  # -- Repo name
+  # -- Image repository and name
   repository: nginx
-  # -- Policy
+  # -- Image pull policy (e.g. Always, IfNotPresent, Never)
   pullPolicy: IfNotPresent
-  # -- Overrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag, default is the chart appVersion
   tag: ""
 
-# -- Auth for image pull
+# -- Configuration for image pull secrets
 imagePullSecrets:
   {}
+  # Example:
   # name: docker-key-json
 
-# -- Overrideing
+# -- Override the default name of the chart
 nameOverride: ""
-# -- Overrideing
+# -- Override the default fullname of the chart
 fullnameOverride: ""
 
-# -- Service Account
+# -- Configuration for the service account
 serviceAccount:
   # -- Specifies whether a service account should be created
   create: true
   # -- Annotations to add to the service account
   annotations: {}
-  # -- The name of the service account to use.
+  # -- The name of the service account to use
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
-# -- Pod Annotations
+# -- Configuration for pod annotations
 podAnnotations:
   {}
+  # Example:
   # app-name: test
 
-# -- Pod Security Context
+# -- Configuration for the pod security context
 podSecurityContext:
   {}
+  # Example:
   # fsGroup: 2000
 
-# -- Security Context
+# -- Configuration for the security context of the container
 securityContext:
   {}
+  # Example:
   # capabilities:
   #   drop:
   #   - ALL
@@ -54,19 +58,20 @@ securityContext:
   # runAsNonRoot: true
   # runAsUser: 1000
 
-# -- Service
+# -- Configuration for the Kubernetes service
 service:
-  # -- Service type
+  # -- Service type (e.g. ClusterIP, NodePort, LoadBalancer)
   type: ClusterIP
-  # Service port
+  # -- Service port
   port: 80
 
-# -- Ingress
+# -- Configuration for the ingress resource
 ingress:
   enabled: false
   className: ""
   annotations:
     {}
+    # Example:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
@@ -75,31 +80,55 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
+  # Example:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
-# -- Resources
+# -- Configuration for resource limits and requests
 resources:
-  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  limits:
+    cpu: 200m
+    memory: 200Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 
-# -- Pod Ports
+# -- Liveness probe configuration
+livenessProbe:
+  enable: false
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3
+
+# -- Readiness probe configuration
+readinessProbe:
+  enable: false
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3
+
+# -- Pod ports configuration
 podPorts:
   - name: http
     containerPort: 80
     protocol: TCP
 
-# -- Autoscaling
+# -- Autoscaling configuration
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -107,11 +136,11 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
 
-# -- Node Selector
+# -- Node Selector configuration
 nodeSelector: {}
 
-# -- Tolerations
+# -- Tolerations configuration
 tolerations: []
 
-# -- Affinity
+# -- Affinity configuration
 affinity: {}

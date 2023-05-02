@@ -1,6 +1,6 @@
 # app
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
 
 A General Helm chart for K8s applications
 
@@ -22,30 +22,33 @@ Kubernetes: `>=1.22.0-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| affinity | object | `{}` | Affinity |
-| autoscaling | object | `{"enabled":false,"maxReplicas":100,"minReplicas":1,"targetCPUUtilizationPercentage":80,"targetMemoryUtilizationPercentage":80}` | Autoscaling |
-| fullnameOverride | string | `""` | Overrideing |
-| image | object | `{"pullPolicy":"IfNotPresent","repository":"nginx","tag":""}` | Image section |
-| image.pullPolicy | string | `"IfNotPresent"` | Policy |
-| image.repository | string | `"nginx"` | Repo name |
-| image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
-| imagePullSecrets | object | `{}` | Auth for image pull |
-| ingress | object | `{"annotations":{},"className":"","enabled":false,"hosts":[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}],"tls":[]}` | Ingress |
-| nameOverride | string | `""` | Overrideing |
-| nodeSelector | object | `{}` | Node Selector |
-| podAnnotations | object | `{}` | Pod Annotations |
-| podPorts | list | `[{"containerPort":80,"name":"http","protocol":"TCP"}]` | Pod Ports |
-| podSecurityContext | object | `{}` | Pod Security Context |
-| replicaCount | int | `1` | Count of replicas |
-| resources | object | `{}` | Resources |
-| securityContext | object | `{}` | Security Context |
-| service | object | `{"port":80,"type":"ClusterIP"}` | Service |
-| service.type | string | `"ClusterIP"` | Service type |
-| serviceAccount | object | `{"annotations":{},"create":true,"name":""}` | Service Account |
+| affinity | object | `{}` | Affinity configuration |
+| autoscaling | object | `{"enabled":false,"maxReplicas":100,"minReplicas":1,"targetCPUUtilizationPercentage":80,"targetMemoryUtilizationPercentage":80}` | Autoscaling configuration |
+| fullnameOverride | string | `""` | Override the default fullname of the chart |
+| image | object | `{"pullPolicy":"IfNotPresent","repository":"nginx","tag":""}` | Configuration for the container image |
+| image.pullPolicy | string | `"IfNotPresent"` | Image pull policy (e.g. Always, IfNotPresent, Never) |
+| image.repository | string | `"nginx"` | Image repository and name |
+| image.tag | string | `""` | Overrides the image tag, default is the chart appVersion |
+| imagePullSecrets | object | `{}` | Configuration for image pull secrets |
+| ingress | object | `{"annotations":{},"className":"","enabled":false,"hosts":[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"}]}],"tls":[]}` | Configuration for the ingress resource |
+| livenessProbe | object | `{"enable":false,"failureThreshold":3,"httpGet":{"path":"/","port":"http"},"initialDelaySeconds":30,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":5}` | Liveness probe configuration |
+| nameOverride | string | `""` | Override the default name of the chart |
+| nodeSelector | object | `{}` | Node Selector configuration |
+| podAnnotations | object | `{}` | Configuration for pod annotations |
+| podPorts | list | `[{"containerPort":80,"name":"http","protocol":"TCP"}]` | Pod ports configuration |
+| podSecurityContext | object | `{}` | Configuration for the pod security context |
+| readinessProbe | object | `{"enable":false,"failureThreshold":3,"httpGet":{"path":"/","port":"http"},"initialDelaySeconds":5,"periodSeconds":10,"successThreshold":1,"timeoutSeconds":5}` | Readiness probe configuration |
+| replicaCount | int | `1` | Number of replicas for the deployment |
+| resources | object | `{"limits":{"cpu":"200m","memory":"200Mi"},"requests":{"cpu":"100m","memory":"128Mi"}}` | Configuration for resource limits and requests |
+| securityContext | object | `{}` | Configuration for the security context of the container |
+| service | object | `{"port":80,"type":"ClusterIP"}` | Configuration for the Kubernetes service |
+| service.port | int | `80` | Service port |
+| service.type | string | `"ClusterIP"` | Service type (e.g. ClusterIP, NodePort, LoadBalancer) |
+| serviceAccount | object | `{"annotations":{},"create":true,"name":""}` | Configuration for the service account |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
 | serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
-| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
-| tolerations | list | `[]` | Tolerations |
+| serviceAccount.name | string | `""` | The name of the service account to use If not set and create is true, a name is generated using the fullname template |
+| tolerations | list | `[]` | Tolerations configuration |
 
 ----------------------------------------------
 Autogenerated from chart metadata using [helm-docs v1.11.0](https://github.com/norwoodj/helm-docs/releases/v1.11.0)
